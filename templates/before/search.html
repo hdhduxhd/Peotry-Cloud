@@ -126,7 +126,15 @@
 </html>
 <script>
     function searchByCondition(){
-        window.location="../search.html"
-
+        var searchContent=$("#search").val();
+        console.log(searchContent);
+        window.location="../search.html?searchContent="+searchContent
     }
+    $(document).keypress(function (e) {
+        // 回车键事件
+        if (e.which == 13) {
+            search();
+        }
+    });
 </script>
+<script src="../../static/js/jquery-2.2.4.min.js"></script>

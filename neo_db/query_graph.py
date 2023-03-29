@@ -6,6 +6,7 @@ import json
 import base64
 
 def query(name):
+    print(name)
     data = graph.run(
     "match(p:诗人) -[r]->(n:`诗歌`) where p.name='%s' return p.name,n.name,r.relation limit 50" % (name)
     )

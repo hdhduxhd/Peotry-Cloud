@@ -23,14 +23,14 @@
     <link href="../static/css/nifty-demo.min.css" rel="stylesheet">
     <link href="../static/css/font-awesome.min.css" rel="stylesheet">
 
-        
-    
+
+
     <!--JAVASCRIPT-->
     <!--=================================================-->
 
     <!--Pace - Page Load Progress Par [OPTIONAL]-->
     <link href="../static/css/pace.min.css" rel="stylesheet">
-   
+
     <script src="../static/js/pace.min.js"></script>
 
 
@@ -51,10 +51,10 @@
 
 
     <!--=================================================-->
-    
+
     <!--Demo script [ DEMONSTRATION ]-->
     <script src="../static/js/nifty-demo.min.js"></script>
-    <style type="text/css"> 
+    <style type="text/css">
     #tagsList {position:relative; width:250px; height:250px; }
 #tagsList a {position:absolute; top:0px; left:0px; font-family: Microsoft YaHei; color:gray; font-weight:bold; text-decoration:none; padding: 3px 6px; }
 #tagsList a:hover { color:#249e92; letter-spacing:2px;}
@@ -68,7 +68,7 @@
 <body>
 
     <div id="container" class="effect aside-float aside-bright mainnav-lg">
-        
+
         <!--NAVBAR-->
         <!--===================================================-->
         <header id="navbar">
@@ -100,7 +100,7 @@
                                 <i class="demo-pli-view-list"></i>
                             </a>
                         </li>
-                        
+
                     </ul>
                     <ul class="nav navbar-top-links pull-left">
 
@@ -108,9 +108,9 @@
 
 
 
-                    
 
-                        
+
+
                     </ul>
                 </div>
                 <!--================================-->
@@ -130,15 +130,15 @@
                 <!--Page content-->
                 <!--===================================================-->
                 <div id="page-content">
-                    
+
 					<h4 class="text-main pad-btm bord-btm">人物关系可视化</h4>
-                
+
               <div class="row">
-                
-                
+
+
                 <div class="col-lg-6">
-                    
-                    
+
+
                     </div>
                     <div class="col-lg-2"></div>
 <!--                    <div class="col-lg-4">-->
@@ -154,13 +154,13 @@
 <!--                        -->
 <!--                        </div>-->
 <!--                    </div>-->
-                    
+
                     </div>
                     <div class="row" style="height: 40px;"></div>
                      <div class="row" >
 <!--                        <div class="col-lg-8" style="height: 400px;" id="guanxi">-->
-                    
-                        
+
+
                     </div>
                     <div class="col-lg-2"></div>
                     <div  class="col-lg-4" id="tagsList">
@@ -180,10 +180,10 @@
 <!--                    <a href="#" data="柳宗元">柳宗元</a>-->
 <!--                    <a href="#" data="刘禹锡">刘禹锡</a>-->
 <!--                    <a href="#" data="颜真卿">颜真卿</a>-->
-                   
+
                     </div>
                     </div>
-					
+
                 </div>
                 <!--===================================================-->
                 <!--End page content-->
@@ -193,7 +193,7 @@
             <!--===================================================-->
             <!--END CONTENT CONTAINER-->
 
-            
+
             <!--MAIN NAVIGATION-->
             <!--===================================================-->
             <nav id="mainnav-container">
@@ -206,15 +206,15 @@
                             <div class="nano-content">
 
                                 <ul id="mainnav-menu" class="list-group">
-						
-						            
-                                  
+
+
+
                                     <!--Category name-->
 						            <li class="list-header"> 关系可视化</li>
-                        
+
                                     <!--Menu list item-->
-                                    
-                        
+
+
                                     <!--Menu list item-->
                                    <li>
                                         <a href="{{ url_for('search') }}">
@@ -222,10 +222,10 @@
                                             <span class="menu-title">
                                                 <strong>检索意象关系</strong>
                                             </span>
-                                            
+
                                         </a>
-                        
-                                        
+
+
                                     </li>
                                     <li>
                                         <a href="{{ url_for('get_all_relation') }}">
@@ -233,34 +233,34 @@
                                             <span class="menu-title">
                                                 <strong>意向关系全貌</strong>
                                             </span>
-                                            
+
                                         </a>
-                        
+
                                     </li>
                                     <!--Menu list item-->
-                                   
-						          
-                                   
+
+
+
 						            <li class="list-divider"></li>
-						
+
 						            <!--Category name-->
 						            <li class="list-header">问答系统</li>
-						
+
 						            <!--Menu list item-->
 						            <li >
 						                <a href="{{ url_for('KGQA') }}">
 						                    <i class="fa fa-question-circle" style="width:24px"></i>
 						                    <span class="menu-title">人物关系问答</span>
-											
+
 						                </a>
-						
-						                
+
+
 						            </li>
-						
+
 						                                    </ul>
 
 
-                                
+
                             </div>
                         </div>
                     </div>
@@ -294,14 +294,23 @@
     <!--===================================================-->
     <!-- END OF CONTAINER -->
    <script type="text/javascript">
+   function getQueryString(name) {
+        var result = window.location.search.match(new RegExp("[\?\&]" + name + "=([^\&]+)", "i"));
+        if (result == null || result.length < 1) {
+            return "";
+        }
+        return result[1];
+   }
+   var searchContent=getQueryString("searchContent");
+   console.log(searchContent);
+   search(searchContent);
     $(document).keypress(function (e) {
-        // 回车键事件  
+        // 回车键事件
         if (e.which == 13) {
             search();
         }
     });
     window.onresize = function () {
-
         myChart.resize();
     }
 
@@ -418,10 +427,30 @@
             }
         ]
     };
-    function search() {
+<!--    function search() {-->
+
+<!--        $.getJSON('/search_name', {-->
+<!--            name: $("#search").val(),-->
+
+<!--        }, function (json) {-->
+
+<!--            option.series[0].nodes = json.data.map(function (node, idx) {-->
+<!--                node.id = idx;-->
+<!--                return node;-->
+<!--            });-->
+
+<!--            option.series[0].links = json.links;-->
+
+<!--            myChart.setOption(option, true);-->
+
+<!--        });-->
+<!--    };-->
+    function search(name) {
+
+        console.log(name);
 
         $.getJSON('/search_name', {
-            name: $("#search").val(),
+            name: name,
 
         }, function (json) {
 
@@ -438,7 +467,7 @@
     }
 
     $(".col-lg-4 a").click(function () {
-       
+
         $.getJSON('/search_name', {
             name: $(this).attr("data"),
 
