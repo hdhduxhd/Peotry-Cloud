@@ -1,489 +1,140 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>基于诗歌意向图谱的可视化平台</title>
-
-    <!--Bootstrap Stylesheet [ REQUIRED ]-->
-    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
-
-    <link rel="shortcut icon" href="../static/images/logo.jpg">
-    <!--Nifty Stylesheet [ REQUIRED ]-->
-    <link href="../static/css/nifty.min.css" rel="stylesheet">
-
-
-    <!--Nifty Premium Icon [ DEMONSTRATION ]-->
-    <link href="../static/css/nifty-demo-icons.min.css" rel="stylesheet">
-
-
-    <!--Demo [ DEMONSTRATION ]-->
-    <link href="../static/css/nifty-demo-icons.min.css" rel="stylesheet">
-    <link href="../static/css/nifty-demo.min.css" rel="stylesheet">
-    <link href="../static/css/font-awesome.min.css" rel="stylesheet">
-
-
-
-    <!--JAVASCRIPT-->
-    <!--=================================================-->
-
-    <!--Pace - Page Load Progress Par [OPTIONAL]-->
-    <link href="../static/css/pace.min.css" rel="stylesheet">
-
-    <script src="../static/js/pace.min.js"></script>
-
-
-    <!--jQuery [ REQUIRED ]-->
-    <script src="../static/js/jquery-2.2.4.min.js"></script>
-
-
-    <!--BootstrapJS [ RECOMMENDED ]-->
-    <script src="../static/js/bootstrap.min.js"></script>
-
-
-    <!--NiftyJS [ RECOMMENDED ]-->
-    <script src="../static/js/nifty.min.js"></script>
-    <script src="../static/js/icons.js"></script>
-    <script src="../static/js/echarts.min.js"></script>
-    <script src="../static/js/tags.js"></script>
-
-
-
-    <!--=================================================-->
-
-    <!--Demo script [ DEMONSTRATION ]-->
-    <script src="../static/js/nifty-demo.min.js"></script>
-    <style type="text/css">
-    #tagsList {position:relative; width:250px; height:250px; }
-#tagsList a {position:absolute; top:0px; left:0px; font-family: Microsoft YaHei; color:gray; font-weight:bold; text-decoration:none; padding: 3px 6px; }
-#tagsList a:hover { color:#249e92; letter-spacing:2px;}
-#search:focus{
-    border: 1px solid #249e92;
-}
-    </style>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>demo</title>
 
 </head>
+<style>
+    #search { 
 
-<body>
+    width: 300px;
+    height: 30px;
+    border:none;    /*取消默认的边框以设置自定义边框*/
+    outline:none;   /*取消浏览器默认的蓝光边框以设置自定义的输入框*/
+    font-size: 16px;        /*设置提示文字的字体大小*/
+    color: rgb(112, 112, 112);   /*设置提示文字颜色*/
+    margin-left: 10px;    /*给输入框与左边放大镜图标10px的间距*/    
+}
+.searchbar {     
+    background-color: #fff;
+    border: rgb(65, 65, 65) solid 1px;
+    border-radius: 2em;    /*左右边框为半圆*/
+    width: 552px;
+    height: 42px;
+   
+    margin: 0 auto;  /*重要！整个搜索框居中对齐*/
+}
+#search, .mcp, .mg {
+    vertical-align: middle;
+}
+#search { 
+    width: 300px;
+    height: 40px;
+    border:none;    /*取消默认的边框以设置自定义边框*/
+    outline:none;   /*取消浏览器默认的蓝光边框以设置自定义的输入框*/
+    font-size: 16px;        
+    color: rgb(112, 112, 112);
+    margin-left: 10px;
+}
+.searchbar {        /*目的是设置自定义边框，比如圆角与阴影*/
+    border: rgb(137, 137, 137) solid 1px;
+    border-radius: 2em;
+    width: 402px;
+    height: 42px;
+    margin: 0 auto;
+}
 
-    <div id="container" class="effect aside-float aside-bright mainnav-lg">
+.mcp {
+    height: 35px;
+}
 
-        <!--NAVBAR-->
-        <!--===================================================-->
-        <header id="navbar">
-            <div id="navbar-container" class="boxed">
+.mg {
+    height: 25px;
+    margin-left: 15px;
+}
+#search, .mcp, .mg {
+    vertical-align: middle;
+}
 
-                <!--Brand logo & name-->
-                <!--================================-->
-                <!-- <div class="navbar-header">
-                    <a href="{{ url_for('index') }}" class="navbar-brand">
-                        <img src="../static/images/logo.jpg" alt="Nifty Logo" class="brand-icon">
-                        <div class="brand-title">
-                            <span class="brand-text">智敏毕设林</span>
-                        </div>
-                    </a>
-                </div> -->
-                <!--================================-->
-                <!--End brand logo & name-->
-
-
-                <!--Navbar Dropdown-->
-                <!--================================-->
-                <div class="navbar-content clearfix">
-                    <ul class="nav navbar-top-links pull-left">
-
-                        <!--Navigation toogle button-->
-                        <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-                        <li class="tgl-menu-btn">
-                            <a class="mainnav-toggle" href="#">
-                                <i class="demo-pli-view-list"></i>
-                            </a>
-                        </li>
-
-                    </ul>
-                    <ul class="nav navbar-top-links pull-left">
-
-                        <h4>基于诗歌意向图谱的可视化平台</h4>
-
-
-
-
-
-
-                    </ul>
-                </div>
-                <!--================================-->
-                <!--End Navbar Dropdown-->
+</style>
+<body style="background-image:url(./img/bk2.jpg);background-size: cover;">
+    <div style="height:100%;width:100%">  
+          <div>
+            <div   class="cloud" style="margin:10px;vertical-align:center;font-size:30px;color: aliceblue;
+            margin-left: 100px;
+            " >
+               <img src="./img/诗云.png" style="width:55px;margin-bottom: -15px;">
+               <span style="font-family:宋体;font-weight: 600;font-size: 25px;margin-left:10px ">诗云</span>
+               <a style="margin-left:100px;font-size:13px;font-weight: 300;opacity: 0.7;" >关于诗云</a>
+               <a style="margin-left:100px;font-size:13px;font-weight: 300;opacity: 0.7;">联系我们</a>
+               <a style="margin-left:700px;font-size:13px;font-weight: 400;opacity: 0.9;">登录</a>
+               <img src="./img/用户.png" style="width:32px;margin-bottom: -10px;">
+               <img src="./img/菜单.png" alt="" style="width:28px;margin-bottom: -8px; margin-left: 10px;">
+            
+            </div>
+           
+          </div>
+         
+          <div class="inner cover" style="margin-top:150px">
+            
+            <div style="text-align:center">
+                <div style="color: rgb(219, 219, 219);margin: 5px;">搜索示例:松柏</div>
+                <div class="searchbar">
+                    <input type="text" id="search" value="搜索"
+                    onfocus="if(value=='搜索')value=''"
+                    onblur="if(!value)value='搜索'"
+                    name="keyword" style="background-color: rgb(255, 255, 255);opacity:0.8;" >  
+                    <img src=img/search.png class="mg" onclick="searchByCondition()">
+            </div>
 
             </div>
-        </header>
-        <!--===================================================-->
-        <!--END NAVBAR-->
+              <section>
 
-        <div class="boxed">
-
-            <!--CONTENT CONTAINER-->
-            <!--===================================================-->
-            <div id="content-container">
-
-                <!--Page content-->
-                <!--===================================================-->
-                <div id="page-content">
-
-					<h4 class="text-main pad-btm bord-btm">人物关系可视化</h4>
-
-              <div class="row">
-
-
-                <div class="col-lg-6">
-
-
-                    </div>
-                    <div class="col-lg-2"></div>
-<!--                    <div class="col-lg-4">-->
-<!--                        <div class="input-group" >-->
-<!--                            <select>-->
-<!--                                <option value="">诗人</option>-->
-<!--                                <option value="">情感</option>-->
-<!--                                <option value="">意向</option>-->
-<!--                                <option value="">朝代</option>-->
-<!--                            </select>-->
-<!--                            <input type="text" id="search" class="form-control input-lg"  placeholder="请输入你要检索的名字...">-->
-<!--                            <span class="input-group-addon btn btn-mint"  onclick="search()">搜索</span>-->
-<!--                        -->
-<!--                        </div>-->
-<!--                    </div>-->
-
-                    </div>
-                    <div class="row" style="height: 40px;"></div>
-                     <div class="row" >
-<!--                        <div class="col-lg-8" style="height: 400px;" id="guanxi">-->
-
-
-                    </div>
-                    <div class="col-lg-2"></div>
-                    <div  class="col-lg-4" id="tagsList">
-<!--                    <a href="#" data="李白" >李白</a>-->
-<!--                    <a href="#" data="王维">王维</a>-->
-<!--                    <a href="#" data="王之涣">王之涣</a>-->
-<!--                    <a href="#" data="骆宾王">骆宾王</a>-->
-<!--                    <a href="#" data="杜甫">杜甫</a>-->
-<!--                    <a href="#" data="张若虚">张若虚</a>-->
-<!--                    <a href="#" data="白居易">白居易</a>-->
-<!--                    <a href="#" data="温庭筠">温庭筠</a>-->
-<!--                    <a href="#" data="罗隐">罗隐</a>-->
-<!--                    <a href="#" data="卢照邻">卢照邻</a>-->
-<!--                    <a href="#" data="王勃">王勃</a>-->
-<!--                    <a href="#" data="孟浩然">孟浩然</a>-->
-<!--                    <a href="#" data="韩愈">韩愈</a>-->
-<!--                    <a href="#" data="柳宗元">柳宗元</a>-->
-<!--                    <a href="#" data="刘禹锡">刘禹锡</a>-->
-<!--                    <a href="#" data="颜真卿">颜真卿</a>-->
-
-                    </div>
-                    </div>
-
-                </div>
-                <!--===================================================-->
-                <!--End page content-->
-
-
-            </div>
-            <!--===================================================-->
-            <!--END CONTENT CONTAINER-->
-
-
-            <!--MAIN NAVIGATION-->
-            <!--===================================================-->
-            <nav id="mainnav-container">
-                <div id="mainnav">
-
-                    <!--Menu-->
-                    <!--================================-->
-                    <div id="mainnav-menu-wrap">
-                        <div class="nano">
-                            <div class="nano-content">
-
-                                <ul id="mainnav-menu" class="list-group">
-
-
-
-                                    <!--Category name-->
-						            <li class="list-header"> 关系可视化</li>
-
-                                    <!--Menu list item-->
-
-
-                                    <!--Menu list item-->
-                                   <li>
-                                        <a href="{{ url_for('search') }}">
-                                            <i class="fa fa-search" style="width:24px"></i>
-                                            <span class="menu-title">
-                                                <strong>检索意象关系</strong>
-                                            </span>
-
-                                        </a>
-
-
-                                    </li>
-                                    <li>
-                                        <a href="{{ url_for('get_all_relation') }}">
-                                            <i class="fa fa-pie-chart" style="width:24px"></i>
-                                            <span class="menu-title">
-                                                <strong>意向关系全貌</strong>
-                                            </span>
-
-                                        </a>
-
-                                    </li>
-                                    <!--Menu list item-->
-
-
-
-						            <li class="list-divider"></li>
-
-						            <!--Category name-->
-						            <li class="list-header">问答系统</li>
-
-						            <!--Menu list item-->
-						            <li >
-						                <a href="{{ url_for('KGQA') }}">
-						                    <i class="fa fa-question-circle" style="width:24px"></i>
-						                    <span class="menu-title">人物关系问答</span>
-
-						                </a>
-
-
-						            </li>
-
-						                                    </ul>
-
-
-
-                            </div>
-                        </div>
-                    </div>
-                    <!--================================-->
-                    <!--End menu-->
-
-                </div>
-            </nav>
-            <!--===================================================-->
-            <!--END MAIN NAVIGATION-->
-
+              </section>
         </div>
-
-        <!-- FOOTER -->
-        <!--===================================================-->
-        <footer id="footer">
-
-           <p class="pad-lft">Copyright&#0169; 2018 林智敏  &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;All Rights Reserved </p>
-
-        </footer>
-        <!--===================================================-->
-        <!-- END FOOTER -->
-
-        <!-- SCROLL PAGE BUTTON -->
-        <!--===================================================-->
-        <button class="scroll-top btn">
-            <i class="pci-chevron chevron-up"></i>
-        </button>
-        <!--===================================================-->
+        <div style="color:white;font-size:16px;margin-left: 520px;margin-top: 10px;margin-bottom: 10px;">热门:</div>
+        <img src="./img/李白.png" alt="" style="width: 44px;border-radius: 22px;margin-left:530px ">
+        <img src="./img/杜甫.png" alt="" style="width: 44px;border-radius: 22px;margin-left:54px ">
+        <img src="./img/兰.png" alt="" style="width: 44px;border-radius: 22px;margin-left:54px ">
+        <img src="./img/梧桐.png" alt="" style="width: 44px;border-radius: 22px;margin-left:54px ">
+        <img src="./img/菊.png" alt="" style="width: 44px;border-radius: 22px;margin-left:54px ">
+        <div style="color:white;font-size:12px;"
+        >
+        <span style="margin-left:538px;margin-top: -10px;">李白</span><span style="margin-left:80px">杜甫</span><span style="margin-left:84px">兰</span><span style="margin-left:86px">梧桐</span><span style="margin-left:85px">菊</span>
     </div>
-    <!--===================================================-->
-    <!-- END OF CONTAINER -->
-   <script type="text/javascript">
-   function getQueryString(name) {
-        var result = window.location.search.match(new RegExp("[\?\&]" + name + "=([^\&]+)", "i"));
-        if (result == null || result.length < 1) {
-            return "";
-        }
-        return result[1];
-   }
-   var searchContent=getQueryString("searchContent");
-   console.log(searchContent);
-   search(searchContent);
+        <div style="color:white;font-size:16px;margin-left: 520px;margin-top:40px">推荐:</div>  
+        <img src="./img/马.png" alt="" style="width: 44px;border-radius: 22px;margin-left:530px ">
+        <img src="./img/苏轼.png" alt="" style="width: 44px;border-radius: 22px;margin-left:54px ">
+        <img src="./img/雪.png" alt="" style="width: 44px;border-radius: 22px;margin-left:54px ">
+        <img src="./img/王维.jpg" alt="" style="width: 44px;border-radius: 22px;margin-left:54px ">
+        <img src="./img/松柏.png" alt="" style="width: 44px;border-radius: 22px;margin-left:54px ">
+        <div style="color:white;font-size:12px;"
+        >
+        <span style="margin-left:544px;margin-top: -10px;">马</span><span style="margin-left:86px">苏轼</span><span style="margin-left:84px">雪</span><span style="margin-left:86px">王维</span><span style="margin-left:78px">松柏</span>
+    </div>
+
+
+    </div>
+      
+
+
+  </body>
+
+
+
+</html>
+<script>
+    function searchByCondition(){
+        var searchContent=$("#search").val();
+        console.log(searchContent);
+        window.location="/search_result?searchContent="+searchContent
+    }
     $(document).keypress(function (e) {
         // 回车键事件
         if (e.which == 13) {
             search();
         }
     });
-    window.onresize = function () {
-        myChart.resize();
-    }
-
-    $.ajaxSetup({ async: false });
-    var myChart = echarts.init(document.getElementById("guanxi"));
-    myChart.showLoading();
-
-    myChart.hideLoading();
-    option = {
-        // backgroundColor: "white",
-        title: {
-            // text: '红楼梦人物关系图',
-            textStyle: {
-                // color: "white",
-                fontWeight: "lighter",
-            }
-        },
-        animationDurationUpdate: 1500,
-        animationEasingUpdate: 'quinticInOut',
-        legend: {
-            x: "center",
-            show: true,
-            data: ["贾家荣国府", "贾家宁国府", "王家", "史家", "薛家", "其他", "林家"]
-        },
-        series: [
-            {
-                type: 'graph',
-                layout: 'force',
-                symbolSize: 50,
-                edgeSymbol: ['circle', 'arrow'],
-                edgeSymbolSize: [4, 4],
-                edgeLabel: {
-                    normal: {
-                        show: true,
-                        textStyle: {
-                            fontSize: 10
-                        },
-                        formatter: "{c}"
-                    }
-                },
-                force: {
-                    repulsion: 2500,
-                    edgeLength: [10, 100]
-                },
-                focusNodeAdjacency: true,
-                draggable: true,
-                roam: true,
-                categories: [{
-                    name: '贾家荣国府',
-                    // itemStyle: {
-                    //     normal: {
-                    //         color: "#009800",
-                    //     }
-                    // }
-                }, {
-                    name: '贾家宁国府',
-                    // itemStyle: {
-                    //     normal: {
-                    //         color: "#4592FF",
-                    //     }
-                    // }
-                }, {
-                    name: '王家',
-                    // itemStyle: {
-                    //     normal: {
-                    //         color: "#3592F",
-                    //     }
-                    // }
-                },
-                {
-                    name: '史家',
-                }, {
-                    name: '薛家',
-                }, {
-                    name: '其他',
-                },
-                {
-                    name: '林家',
-                }
-                ],
-                label: {
-                    normal: {
-                        show: true,
-                        textStyle: {
-                            fontSize: 10
-                        },
-                    }
-                },
-                force: {
-                    repulsion: 1000
-                },
-                tooltip: {
-                    formatter: function (node) { // 区分连线和节点，节点上额外显示其他数字
-                        if (!node.value) {
-                            return node.data.name;
-                        } else {
-                            return node.data.name + ":" + node.data.showNum;
-                        }
-                    },
-                },
-                lineStyle: {
-                    normal: {
-                        opacity: 0.9,
-                        width: 1,
-                        curveness: 0.3
-                    }
-                },
-                // progressiveThreshold: 700,
-                nodes: [],
-                links: [],
-
-
-
-            }
-        ]
-    };
-<!--    function search() {-->
-
-<!--        $.getJSON('/search_name', {-->
-<!--            name: $("#search").val(),-->
-
-<!--        }, function (json) {-->
-
-<!--            option.series[0].nodes = json.data.map(function (node, idx) {-->
-<!--                node.id = idx;-->
-<!--                return node;-->
-<!--            });-->
-
-<!--            option.series[0].links = json.links;-->
-
-<!--            myChart.setOption(option, true);-->
-
-<!--        });-->
-<!--    };-->
-    function search(name) {
-
-        console.log(name);
-
-        $.getJSON('/search_name', {
-            name: name,
-
-        }, function (json) {
-
-            option.series[0].nodes = json.data.map(function (node, idx) {
-                node.id = idx;
-                return node;
-            });
-
-            option.series[0].links = json.links;
-
-            myChart.setOption(option, true);
-
-        });
-    }
-
-    $(".col-lg-4 a").click(function () {
-
-        $.getJSON('/search_name', {
-            name: $(this).attr("data"),
-
-        }, function (json) {
-
-            option.series[0].nodes = json.data.map(function (node, idx) {
-                node.id = idx;
-                return node;
-            });
-
-            option.series[0].links = json.links;
-
-            myChart.setOption(option, true);
-
-        })
-    });
 </script>
-</body>
-</html>
+<script src="../../static/js/jquery-2.2.4.min.js"></script>

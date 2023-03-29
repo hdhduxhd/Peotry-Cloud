@@ -15,6 +15,10 @@ def index(name=None):
 def search():
     return render_template('search.html')
 
+@app.route('/search_result', methods=['GET', 'POST'])
+def search_result():
+    return render_template('search_result.html')
+
 
 @app.route('/KGQA', methods=['GET', 'POST'])
 def KGQA():
